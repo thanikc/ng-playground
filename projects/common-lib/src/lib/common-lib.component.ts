@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { CommonLibService } from './common-lib.service';
 
 @Component({
   selector: 'lib-common-lib',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommonLibComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(private service: CommonLibService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.form = this.fb.group({ readOnly: false });
+
+    const control = this.form.get('readOnly');
+
+    control.valueChanges.subscribe(readOnly => {
+      this.service.setReadOnly(readOnly);
+    });
+
+    this.service.getReadOnly().subscribe(readOnly => {
+      control.setValue(readOnly, { emitEvent: false });
+    });
   }
 
 }
