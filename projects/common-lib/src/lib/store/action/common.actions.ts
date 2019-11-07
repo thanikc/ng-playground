@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum CommonActionTypes {
   SetReadonlyMode = '[Common] SetReadonlyMode',
+  SetReadonlyModeSucess = '[Common] SetReadonlyModeSuccess'
 }
 
 export class SetReadonlyModeAction implements Action {
@@ -9,4 +10,10 @@ export class SetReadonlyModeAction implements Action {
   constructor(public payload: { readOnly: boolean }) {}
 }
 
-export type CommonActions = SetReadonlyModeAction;
+export class SetReadonlyModeSuccessAction implements Action {
+  readonly type = CommonActionTypes.SetReadonlyModeSucess;
+  constructor() {}
+}
+
+
+export type CommonActions = SetReadonlyModeAction | SetReadonlyModeSuccessAction;

@@ -1,11 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { ExtensionModule } from './extension/extension.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './store/app.reducer';
+import { AppComponent } from './app.component';
 import { DebugModule } from './debug/debug.module';
+import { ExtensionModule } from './extension/extension.module';
+import { appReducer } from './store/app.reducer';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DebugModule } from './debug/debug.module';
     BrowserModule, 
     ExtensionModule,
     StoreModule.forRoot({ app: appReducer }),
+    EffectsModule.forRoot([]),
     DebugModule
   ],
   providers: [],

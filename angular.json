@@ -33,6 +33,14 @@
             "scripts": []
           },
           "configurations": {
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -62,9 +70,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-playground:build"
+            "browserTarget": "ng-playground:build",
+            "proxyConfig": "proxy.config.js"
           },
           "configurations": {
+            "local": {
+              "browserTarget": "ng-playground:build:local"
+            },
             "production": {
               "browserTarget": "ng-playground:build:production"
             }

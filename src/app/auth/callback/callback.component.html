@@ -1,0 +1,11 @@
+<h5>OAuth callback</h5>
+
+
+<div class="token-info" *ngIf="tokenInfo">
+  <pre *ngFor="let item of tokenInfo | keyvalue">{{ item.key }}: {{ item.value | truncate: [64] }}</pre>
+  <button (click)="logToken()">console.log</button>
+</div>
+
+<div class="error" *ngIf="error">
+  {{ error.error_description }}
+</div>
