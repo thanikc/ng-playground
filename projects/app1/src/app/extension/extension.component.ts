@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ExtensionComponent implements OnInit {
 
-  readOnly: Observable<boolean> = this.commonService.getReadOnly();
+  readOnly$: Observable<boolean> = this.commonService.getReadOnly();
 
   constructor(private commonService: CommonLibService) {}
 

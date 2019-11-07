@@ -8,7 +8,7 @@ import { CommonLibService } from './common-lib.service';
 @NgModule({
   declarations: [CommonLibComponent],
   imports: [
-    StoreModule.forRoot({ common: commonReducer }),
+    StoreModule.forFeature('common', commonReducer ),
     ReactiveFormsModule
   ],
   providers: [CommonLibService],
