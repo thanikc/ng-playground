@@ -1,6 +1,12 @@
 # NgPlayground
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
+This project serves as POC for what ever comes to mind.
+
+It currently features:
+- OAuth Code Flow
+- Shared library with injectable service
+
+`app1` and `app2` will only build if `common-lib` has been built with `ng build common-lib`.
 
 ## Development server
 
