@@ -7,3 +7,8 @@ export const getReadOnlyMode = createSelector(
   getCommonState,
   s => s.readOnlyMode
 );
+
+export const getFeatures = createSelector(
+  getCommonState,
+  s => s.features
+);

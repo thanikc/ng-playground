@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMapTo, tap } from 'rxjs/operators';
 import { AbstractCustomService, CUSTOM_SERVICE } from '../../services/custom.service';
-import { CommonActionTypes, SetReadonlyModeAction, SetReadonlyModeSuccessAction } from '../action/common.actions';
+import { FeatureService } from '../../services/features.service';
+import { CommonActionTypes, GetFeaturesAction, GetFeaturesSuccessAction, SetReadonlyModeAction, SetReadonlyModeSuccessAction } from '../action/common.actions';
 
 @Injectable()
 export class CommonEffects {
@@ -15,5 +16,12 @@ export class CommonEffects {
     map(_ => new SetReadonlyModeSuccessAction())
   );
 
-  constructor(private actions$: Actions, @Inject(CUSTOM_SERVICE) private customService: AbstractCustomService) {}
+  @Effect()
+  getFeatures$ = this.actions$.pipe(
+    ofType<GetFeaturesAction>(CommonActionTypes.GetFeatures),
+    switchMapTo(this.featureService.getFeatureConfig()),
+    map(features => new GetFeaturesSuccessAction({features}))
+  );
+
+  constructor(private actions$: Actions, @Inject(CUSTOM_SERVICE) private customService: AbstractCustomService, private featureService: FeatureService) {}
 }

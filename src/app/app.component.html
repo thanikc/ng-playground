@@ -1,8 +1,18 @@
-<h1>App</h1>
+<mat-toolbar color="primary">
+    <span>App</span>
+    <span>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </span>
+    <span class="spacer"></span>
+    <span><button (click)="auth()">authorize</button></span>
+</mat-toolbar>
 
-<div>OAuth: <button (click)="auth()">authorize</button></div>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item *ngFor="let feature of features$ | async">{{ capitalize(feature?.id) }}</button>
+</mat-menu>
 
-<h3>Routes</h3>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

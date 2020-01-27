@@ -1,0 +1,24 @@
+{
+  "payload": [
+    {
+      "id": "basket",
+      "icon": "assets/basket.png",
+      "view": {
+        "tabs": [
+          {
+            "id": "general"
+          },
+          {
+            "id": "options"
+          },
+          {
+            "id": "ship_to_locations"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quotes"
+    }
+  ]
+}
