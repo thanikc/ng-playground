@@ -25,6 +25,7 @@ export const environment = {
   oauth_authorize_path: <OAUTH_AUTHORIZATION_PATH>
 };
 ```
+3. run the app with `ng serve --configuration=local`
 
 ## Development server
 
