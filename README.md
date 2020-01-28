@@ -8,6 +8,24 @@ It currently features:
 
 `app1` and `app2` will only build if `common-lib` has been built with `ng build common-lib`.
 
+## Setup and try OAuth Code Flow
+1. create a .env file in the project's root folder and set the variable IDP_URL to your identity provider's login endpoint
+2. create environment.local.ts in scr/environments:
+```
+import { environment as DEFAULT } from './environment.default';
+
+export const environment = {
+  ...DEFAULT,
+  
+  oauth_clientId: <CLIENT_ID>,
+  oauth_callbackUri: 'http://localhost:4200/oauth/callback/',
+  
+  oauth_resourceUri: <RESOURCE_URI>,
+  oauth_uri: <OAUTH_HOST_URI>,
+  oauth_authorize_path: <OAUTH_AUTHORIZATION_PATH>
+};
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
