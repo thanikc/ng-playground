@@ -7,12 +7,14 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModules } from './material.modules';
+import { NcovComponent } from './ncov/ncov.component';
+import { NcovService } from './ncov/ncov.service';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, NcovComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,7 @@ import { MaterialModules } from './material.modules';
     BrowserAnimationsModule,
     ...MaterialModules
   ],
-  providers: [],
+  providers: [ NcovService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

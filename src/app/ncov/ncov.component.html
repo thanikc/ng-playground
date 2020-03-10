@@ -1,0 +1,23 @@
+<h2>Coronavirus COVID-19</h2>
+
+<mat-form-field class="country">
+  <input
+    matInput
+    placeholder="Country"
+    (change)="updateCountry($event.target.value)"
+  />
+</mat-form-field>
+
+<mat-card *ngIf="confirmedCases$ | async as confirmedCases">
+  <mat-card-content>
+    <div class="confirmed">Confirmed: {{ confirmedCases.Confirmed }}</div>
+
+    <div class="deaths">Deaths: {{ confirmedCases.Deaths }}</div>
+
+    <div class="recovered">Recovered: {{ confirmedCases.Recovered }}</div>
+  </mat-card-content>
+
+  <mat-card-footer class="last-update mat-small">
+    <div>Last Update: {{ getDate(confirmedCases.Last_Update) }}</div>
+  </mat-card-footer>
+</mat-card>
