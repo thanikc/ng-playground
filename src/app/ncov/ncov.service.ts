@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,14 @@ export class NcovService {
   constructor(private http: HttpClient) {}
 
   getConfirmedCasesByCountry(country: string): Observable<any> {
-    const url = `${this.baseUrl}${this.baseQuery} AND (Country_Region='${country}')`;
-    return this.http.get(url);
+    const condition = country === '*' ? '' : ` AND (Country_Region='${country}')`;
+    const url = `${this.baseUrl}${this.baseQuery}${condition}`;
+    return this.http.get(url).pipe(
+      tap(res => {
+        if(!environment.production) {
+          console.log(res);
+        }
+      })
+    );
   }
 }

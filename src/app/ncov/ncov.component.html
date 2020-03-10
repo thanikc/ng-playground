@@ -1,25 +1,32 @@
 <h2>Coronavirus COVID-19</h2>
 
-<mat-form-field class="country">
+<mat-form-field>
   <input
     matInput
-    placeholder="Country"
+    placeholder="Country/Region"
     (change)="updateCountry($event.target.value)"
   />
+  <mat-error *ngIf="!!errorMessage">{{ errorMessage }}</mat-error>
 </mat-form-field>
 
-<mat-card *ngIf="confirmedCases$ | async as confirmedCases">
-  <mat-card-content>
-    <div class="confirmed">Confirmed: {{ confirmedCases.Confirmed }}</div>
+<div class="results" *ngIf="confirmedCases$ | async as confirmedCases">
+  
+  <mat-card *ngFor="let case of confirmedCases" class="tile">
+    <mat-card-title>{{ case.Country_Region }}</mat-card-title>
+    <mat-card-subtitle>{{ case.Province_State || case.Country_Region}}</mat-card-subtitle>
+    <mat-card-content>
+      <div class="confirmed">Confirmed: {{ case.Confirmed }}</div>
+  
+      <div class="deaths">Deaths: {{ case.Deaths }}</div>
+  
+      <div class="recovered">Recovered: {{ case.Recovered }}</div>
+  
+      <div class="fatality">Fatality Rate: {{ getFatalityRate(case.Confirmed, case.Deaths) }}</div>
+    </mat-card-content>
+  
+    <mat-card-footer class="last-update mat-small">
+      <div>Last Update: {{ getDate(case.Last_Update) }}</div>
+    </mat-card-footer>
+  </mat-card>
 
-    <div class="deaths">Deaths: {{ confirmedCases.Deaths }}</div>
-
-    <div class="recovered">Recovered: {{ confirmedCases.Recovered }}</div>
-
-    <div class="fatality">Fatality Rate: {{ getFatalityRate(confirmedCases.Confirmed, confirmedCases.Deaths) }}</div>
-  </mat-card-content>
-
-  <mat-card-footer class="last-update mat-small">
-    <div>Last Update: {{ getDate(confirmedCases.Last_Update) }}</div>
-  </mat-card-footer>
-</mat-card>
+</div>

@@ -1,3 +1,18 @@
+.tile {
+  width: 16rem;
+  height: 12rem;
+  margin: 0.5rem;
+}
+
 .filter-form {
   min-width: 10rem;
+}
+
+.last-update {
+  padding: 0.5rem;
+}
+
+.results {
+  display: inline-flex;
+  flex-wrap: wrap;
 }
