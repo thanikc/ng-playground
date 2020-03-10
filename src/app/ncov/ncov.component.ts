@@ -33,4 +33,11 @@ export class NcovComponent implements OnInit {
   getDate(timestamp: number) {
     return new Date(timestamp);
   }
+
+  getFatalityRate(cases: number, deaths: number): string {
+    const percentage = 100 * deaths / cases;
+    const rounded = Math.round(100 * percentage) / 100;
+    return `${rounded}%`;
+  }
+
 }

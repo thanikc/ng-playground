@@ -15,6 +15,8 @@
     <div class="deaths">Deaths: {{ confirmedCases.Deaths }}</div>
 
     <div class="recovered">Recovered: {{ confirmedCases.Recovered }}</div>
+
+    <div class="fatality">Fatality Rate: {{ getFatalityRate(confirmedCases.Confirmed, confirmedCases.Deaths) }}</div>
   </mat-card-content>
 
   <mat-card-footer class="last-update mat-small">
