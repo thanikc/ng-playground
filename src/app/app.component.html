@@ -11,6 +11,7 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngFor="let feature of features$ | async">{{ capitalize(feature?.id) }}</button>
+  <button mat-menu-item (click)="routeTo('/ncov')">2019-nCoV</button>
 </mat-menu>
 
 <div class="container">

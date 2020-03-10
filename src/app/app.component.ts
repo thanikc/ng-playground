@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FeatureConfig } from 'common-lib/lib/services/features.service';
 import { getFeatures } from 'projects/common-lib/src/lib/store/selector/common.selectors';
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
 
   features$: Observable<FeatureConfig[]>;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private router: Router) {}
 
   ngOnInit() {
     this.features$ = this.store.select(getFeatures);
@@ -29,6 +30,10 @@ export class AppComponent implements OnInit {
 
   capitalize(text: string): string {
     return text.replace(/^\w/, c => c.toUpperCase());
+  }
+
+  routeTo(path: string) {
+    this.router.navigateByUrl(path);
   }
 
 }
