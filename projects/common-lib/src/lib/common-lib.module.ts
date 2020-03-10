@@ -40,7 +40,7 @@ export function initializeApp(store: Store<CommonState>) {
 export class CommonLibModule {
   static forRoot(
     CustomService?: Type<AbstractCustomService>
-  ): ModuleWithProviders {
+  ): ModuleWithProviders<CommonLibModule> {
     return {
       ngModule: CommonLibModule,
       providers: [
