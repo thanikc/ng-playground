@@ -17,10 +17,11 @@ export class NcovComponent implements OnInit {
   ngOnInit() {
     this.confirmedCases$ = this.country$.pipe(
       switchMap(country => this.ncovService.getConfirmedCasesByCountry(country).pipe(
-        map(obj => obj.features as Array<any>),
-        map(features => features.find(f => f.attributes.Country_Region === country))
+        map(obj => obj?.features as Array<any>),
+        filter(features => !!features),
+        map(features => features.find(f => f.attributes?.Country_Region === country))
       )),
-      filter(index => !!index.attributes),
+      filter(index => !!index?.attributes),
       map(index => index.attributes),
     );
   }
